@@ -1,13 +1,10 @@
 name: Reusable workflow
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   example_job:
-    name: my-action
     runs-on: ubuntu-latest
     steps:
-      - name: Send greeting
-      run: echo "Hello World"
-         
+      - run: echo "YO!"         
