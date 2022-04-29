@@ -1,0 +1,27 @@
+name: CI on Pull Request
+
+on:
+  workflow_call:
+
+jobs:
+  ci-pull-request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5 # Timeout in minutes
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 16.13.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.0
+      - name: Install dependencies
+        run: npm install
+      - name: Audit
+        run: npm audit
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Tests
+        run: npm run test
+# See https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions for documentation
